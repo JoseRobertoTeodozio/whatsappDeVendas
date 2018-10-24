@@ -2,6 +2,7 @@
 
 namespace CodeShopping\Http\Controllers\Api;
 
+use CodeShopping\Http\Resources\ProductCategoryResource;
 use CodeShopping\Http\Controllers\Controller;
 use CodeShopping\Http\Requests\ProductCategoryRequest;
 use CodeShopping\Models\Product;
@@ -11,9 +12,10 @@ use Illuminate\Http\Request;
 class ProductCategoryController extends Controller
 {
     //listar relacionamentos
-    public function index(Product $produto)
+    public function index(Product $produto) 
     {
-        return $produto->categories;
+        return new ProductCategoryResource($produto);
+        //return $produto->categories;               
     }
 
     // passar um campo de categorias
@@ -23,7 +25,7 @@ class ProductCategoryController extends Controller
        $changed =  $product->categories()->sync($request->categories);
        $categoriesAttachedId = $changed['attached'];
        $categories = Category::whereIn('id', $categoriesAttachedId)->get();
-        return $categories->count() ? response()->json($categories, '201') : [];
+        return $categories->count() ? response()->json(new ProductCategoryResource($produto), '201') : [];
     }
 
     public function destroy(Product $p, Category $c)
