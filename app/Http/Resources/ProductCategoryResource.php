@@ -12,6 +12,8 @@ class ProductCategoryResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+
+     //testando github
     public function toArray($request)
     {
         return [
