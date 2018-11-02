@@ -14,7 +14,7 @@ class ProductCategoryController extends Controller
     //listar relacionamentos
     public function index(Product $produto) 
     {
-        return new ProductCategoryResource($produto);
+        return new ProductCategoryResource($produto); // products, dados e categories
         //return $produto->categories;               
     }
 
