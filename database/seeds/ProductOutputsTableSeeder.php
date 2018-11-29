@@ -1,9 +1,8 @@
 <?php
 
-use CodeShopping\Models\ProductInput;
 use Illuminate\Database\Seeder;
 
-class ProductsInputsTableSeeder extends Seeder
+class ProductOutputsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,12 +12,12 @@ class ProductsInputsTableSeeder extends Seeder
     public function run()
     {
         $products = \CodeShopping\Models\Product::all();
-        factory(ProductInput::class, 150)
+        factory(\CodeShopping\Models\ProductOutput::class, 150)
         ->make()
-        ->each(function($input) use($products){
+        ->each(function($output) use($products){
             $product = $products->random();
-            $input->product_id = $product->id;
-            $input->save();
+            $output->product_id = $product->id;
+            $output->save();
             //outra tarefa
         });
     }
