@@ -18,7 +18,6 @@ class ProductOutputsTableSeeder extends Seeder
             $product = $products->random();
             $output->product_id = $product->id;
             $output->save();
-            //outra tarefa
         });
     }
 }
